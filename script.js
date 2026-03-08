@@ -156,7 +156,7 @@
     // ───────── Nyan Cat Background Animation (Part 1 only) ─────────
 
     // var NYAN_GIF_URL = 'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHZueWpobjJqNWFiaHphbm92Z2JmN3RwaHpmZ29mNXZ0NXZyeHpxayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sIIhZmxQX2f4w1vSh3/giphy.gif';
-    var NYAN_GIF_URL = '/img/nyan-cat.gif'; // Local fallback for offline use
+    var NYAN_GIF_URL = './img/nyan-cat.gif'; // Local fallback for offline use
     var nyanActive = false;
     var nyanAnimations = [];
 
