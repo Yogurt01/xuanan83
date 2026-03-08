@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day - 8/3</title>
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="/audio/cupid-spedup.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Part 1: Envelope -->
+    <div id="part1">
+        <div class="background-overlay"></div>
+        <h1 class="welcome-text">Xin chào XuanAn cute phô mai que,<br>click zô thư để xem lời chúc nha!! ❤️</h1>
+        <div class="envelope-wrapper">
+            <div class="envelope" id="env">
+                <div class="letter">--💿8/3💿--!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Part 2: Grid & Wish Popup -->
+    <div id="part2">
+        <div class="grid" id="parallax-grid">
+            <div class="grid__item pos-1"><div class="grid__item-img" style="background-image:url(/img/img1.jpg);"></div></div>
+            <div class="grid__item pos-2"><div class="grid__item-img" style="background-image:url(/img/img2.jpg);"></div></div>
+            <div class="grid__item pos-3"><div class="grid__item-img" style="background-image:url(/img/img3.jpg);"></div></div>
+            <div class="grid__item pos-4"><div class="grid__item-img" style="background-image:url(/img/img4.jpg);"></div></div>
+            <div class="grid__item pos-5"><div class="grid__item-img" style="background-image:url(/img/img5.jpg);"></div></div>
+            <div class="grid__item pos-6"><div class="grid__item-img" style="background-image:url(/img/img6.jpg);"></div></div>
+            <div class="grid__item pos-7"><div class="grid__item-img" style="background-image:url(/img/img7.jpg);"></div></div>
+            <div class="grid__item pos-8"><div class="grid__item-img" style="background-image:url(/img/img8.jpg);"></div></div>
+            <div class="grid__item pos-9"><div class="grid__item-img" style="background-image:url(/img/img9.jpg);"></div></div>
+            <div class="grid__item pos-10"><div class="grid__item-img" style="background-image:url(/img/img10.jpg);"></div></div>
+        </div>
+
+        <div class="popup-window">
+            <h1 class="main-title">Happy Women's Day!</h1>
+            <div class="typing-container">
+                <span id="typing-text"></span><span class="cursor-blink"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Script -->
+    <script src="script.js"></script>
+</body>
+</html>

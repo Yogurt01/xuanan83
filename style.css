@@ -1,0 +1,278 @@
+/* ===== Base Reset & Variables ===== */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-pink: #ff758c;
+    --secondary-pink: #ff7eb3;
+    --pastel-pink: #fce4ec;
+    --bg-dark: #0c0c0c;
+    --text-color: #f0f0f0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    cursor: none;
+}
+
+/* ===== Custom Cursor ===== */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary-pink);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+}
+
+/* ===== Part 1: Envelope Screen ===== */
+#part1 {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%);
+    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1), opacity 1s;
+    overflow: hidden;
+}
+
+/* Soft overlay for artistic feel on Part 1 */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(252,228,236,0.2) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ===== Nyan Cat Background Animation ===== */
+.nyan-cat {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+    z-index: 2; /* Behind envelope (z-index 10) but above background */
+}
+
+.nyan-cat img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.welcome-text {
+    position: relative;
+    z-index: 10;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: #d81b60;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.envelope-wrapper {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    perspective: 1000px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.envelope {
+    width: 280px;
+    height: 180px;
+    background: #fffafa;
+    position: relative;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 110px solid #ffb7b2;
+    transform-origin: top;
+    transition: transform 0.6s;
+    z-index: 3;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.letter {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 140px;
+    background: white;
+    z-index: 1;
+    transition: transform 0.6s 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pacifico', cursive;
+    color: #d4418e;
+    font-size: 1.1rem;
+    border: 1px solid #eee;
+}
+
+.envelope.open .letter {
+    transform: translate(-50%, -100px);
+}
+
+/* ===== Part 2: Grid & Wish Popup ===== */
+#part2 {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0;
+}
+
+/* ===== Parallax Grid (from reference template) ===== */
+.grid {
+    pointer-events: none;
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+    display: grid;
+    grid-template-columns: repeat(50, 2%);
+    grid-template-rows: repeat(50, 2%);
+    z-index: 1;
+}
+
+.grid__item {
+    position: relative;
+    will-change: transform;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid__item-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 5px;
+}
+
+/* Grid positions (from reference template) */
+.pos-1  { grid-area: 10 / 1 / 26 / 7; }
+.pos-2  { grid-area: 1 / 18 / 9 / 27; }
+.pos-3  { grid-area: 1 / 36 / 14 / 42; }
+.pos-4  { grid-area: 13 / 11 / 32 / 18; }
+.pos-5  { grid-area: 17 / 32 / 32 / 38; }
+.pos-6  { grid-area: 20 / 46 / 28 / 51; }
+.pos-7  { grid-area: 43 / 1 / 51 / 10; }
+.pos-8  { grid-area: 38 / 14 / 46 / 22; }
+.pos-9  { grid-area: 40 / 26 / 51 / 32; }
+.pos-10 { grid-area: 37 / 39 / 48 / 47; }
+
+/* ===== Popup Window ===== */
+.popup-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(15, 15, 15, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 117, 140, 0.3);
+    z-index: 10;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.main-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffecd2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 154, 158, 0.5));
+}
+
+.typing-container {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    min-height: 100px;
+    color: #ffe0e6;
+    text-shadow:
+        0 0 8px rgba(255, 117, 140, 0.6),
+        0 0 20px rgba(255, 117, 140, 0.3);
+}
+
+.cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--primary-pink);
+    margin-left: 5px;
+    animation: blink 0.8s infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    .typing-container {
+        font-size: 1.1rem;
+    }
+    .grid {
+        width: 150%;
+        height: 150%;
+    }
+}
